@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1 contenteditable="true">My Portfolio</h1>
+        <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    </header>
+    
+    <nav>
+        <button onclick="showSection('personal-info')">Personal Info</button>
+        <button onclick="showSection('academic-credentials')">Academic Credentials</button>
+        <button onclick="showSection('internships')">Internships</button>
+        <button onclick="showSection('projects')">Projects</button>
+        <button onclick="showSection('certifications')">Certifications</button>
+        <button onclick="showSection('contact')">Contact</button>
+    </nav>
+    
+    <section id="personal-info" class="content-section">
+        <h2>Personal Info</h2>
+        <p contenteditable="true">Hi! I'm a passionate Computer Science student.</p>
+    </section>
+
+    <section id="academic-credentials" class="content-section">
+        <h2>Academic Credentials</h2>
+        <ul id="academic-list">
+            <li contenteditable="true">B.Tech in Computer Science - XYZ University (2022-2026)</li>
+            <li contenteditable="true">High School - ABC School (2020-2022)</li>
+        </ul>
+        <input type="text" id="academic-input" placeholder="Add academic details">
+        <button onclick="addAcademic()">Add</button>
+    </section>
+
+    <section id="internships" class="content-section">
+        <h2>Internships</h2>
+        <ul id="internship-list">
+            <li contenteditable="true"><b>Internship 1:</b> AI Research Intern at ABC Corp (2024)</li>
+            <li contenteditable="true"><b>Internship 2:</b> Data Science Intern at XYZ Ltd (2023)</li>
+        </ul>
+        <input type="text" id="internship-input" placeholder="Add internship">
+        <button onclick="addInternship()">Add</button>
+    </section>
+    
+    <section id="projects" class="content-section">
+        <h2>Projects</h2>
+        <div class="project" contenteditable="true">
+            <h3>Project 1</h3>
+            <p>Project description goes here.</p>
+        </div>
+        <div class="project" contenteditable="true">
+            <h3>Project 2</h3>
+            <p>Project description goes here.</p>
+        </div>
+    </section>
+    
+    <section id="certifications" class="content-section">
+        <h2>Certifications</h2>
+        <ul id="cert-list"></ul>
+        <input type="text" id="cert-input" placeholder="Enter certification">
+        <button onclick="addCertification()">Add Certification</button>
+    </section>
+    
+    <section id="contact" class="content-section">
+        <h2>Contact</h2>
+        <p contenteditable="true">Email: your.email@example.com</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 My Portfolio</p>
+    </footer>
+    
+    <script>
+        function showSection(sectionId) {
+            $(".content-section").hide();
+            $("#" + sectionId).fadeIn();
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+        }
+        
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+
+        function addCertification() {
+            let certInput = document.getElementById("cert-input");
+            let certList = document.getElementById("cert-list");
+            if (certInput.value.trim() !== "") {
+                let li = document.createElement("li");
+                li.textContent = certInput.value;
+                certList.appendChild(li);
+                certInput.value = "";
+            }
+        }
+
+        function addAcademic() {
+            let academicInput = document.getElementById("academic-input");
+            let academicList = document.getElementById("academic-list");
+            if (academicInput.value.trim() !== "") {
+                let li = document.createElement("li");
+                li.textContent = academicInput.value;
+                academicList.appendChild(li);
+                academicInput.value = "";
+            }
+        }
+
+        function addInternship() {
+            let internshipInput = document.getElementById("internship-input");
+            let internshipList = document.getElementById("internship-list");
+            if (internshipInput.value.trim() !== "") {
+                let li = document.createElement("li");
+                li.textContent = internshipInput.value;
+                internshipList.appendChild(li);
+                internshipInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
